@@ -5,11 +5,12 @@ use App\Models\Posts;
 
 use Illuminate\Http\Request;
 
+
 class PostsController extends Controller
 {
      // display all the posts
      public function viewPosts(){
-        $posts = Posts::all();
+        $posts = Posts::orderBy('created_at','desc')->get();
         return view('posts.view_posts', compact('posts'));
     }
 
@@ -28,7 +29,8 @@ class PostsController extends Controller
 
     // display a specific post
     public function show($id){
-        return Posts::find($id);
+        $post = Posts::find($id);
+        return view('posts.show', compact('post'));
     }
 
 
