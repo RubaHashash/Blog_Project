@@ -28,7 +28,7 @@ class PostsController extends Controller
 
     // display a specific post
     public function show($id){
-
+        return Posts::find($id);
     }
 
 
