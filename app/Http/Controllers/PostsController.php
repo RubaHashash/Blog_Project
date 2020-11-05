@@ -23,7 +23,19 @@ class PostsController extends Controller
 
     // stores the created post in database
     public function store(Request $request){
+        
+        $this->validate($request,[
+            'title' => 'required',
+            'body' => 'required'
+        ]);
 
+        $post = new Posts();
+        $post->user_id = 1;
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->save();
+
+        return redirect('/posts');
     }
 
 
