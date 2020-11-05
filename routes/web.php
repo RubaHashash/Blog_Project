@@ -31,8 +31,8 @@ Route::get('users/{id}',function($id){
 Route::group(['middleware' => ['auth']], function() {
     // your routes
     Route::get('/posts', [PostsController::class,"viewPosts"])->name('posts');
-    Route::get('/Myposts', [PostsController::class,"viewMyPosts"])->name('Myposts');
-    Route::post('/posts/create', [PostsController::class,"create"])->name('create');
+    Route::get('/Myposts', [PostsController::class,"viewMyPosts"]);
+    Route::post('/posts/create', [PostsController::class,"create"]);
     Route::get('/posts/{post}', [PostsController::class,"show"]);
     Route::put('/posts/{post}', [PostsController::class,"update"]);
     Route::get('/posts/{post}/edit', [PostsController::class,"edit"]);

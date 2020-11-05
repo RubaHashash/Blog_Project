@@ -2,9 +2,10 @@
 @extends('layouts.index')
 
 @section('content')
-
+    <br>
     <h1>Edit Post</h1>
-
+    <hr>
+    
     <form method="POST" action="/posts/{{ $post->id }}", enctype = "multipart/form-data">
         @csrf
         @method('PUT')

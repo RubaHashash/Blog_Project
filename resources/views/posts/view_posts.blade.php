@@ -1,7 +1,10 @@
 @extends('layouts.index')
 
 @section('content')
+    <br>
     <h1>Posts</h1>
+    <hr>
+
         @if(count($posts) > 0)
         <div class="card">
             <ul class="list-group list-group-flush">
@@ -10,7 +13,7 @@
                 <div class="row">
                     
                     <div class="col-md-4">
-                        <img style="width: 100%" src="/storage/app/{{ $post->post_photo_path }}" >
+                        <img style="width: 50%" src="/storage/app/{{ $post->post_photo_path }}" >
                     </div>
 
                     <div class="col-md-8">
@@ -19,6 +22,7 @@
                     </div>
 
                 </div>
+                <hr>
 
                 @endforeach
             </ul>

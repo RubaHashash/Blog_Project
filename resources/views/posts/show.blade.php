@@ -2,15 +2,15 @@
 
 @section('content')
     <br>
-    <a href="/posts" class="btn btn-default">Go Back</a>
-    <br>
     <h1>{{ $post->title }}</h1>
+    <hr>
+    
     <div class="row">
         <div class="col-md-12">
-            <img style="width: 50%" src="/storage/app/{{ $post->post_photo_path }}" alt="noimage">
+            <img style="width: 30%" src="/storage/app/{{ $post->post_photo_path }}" alt="noimage">
         </div>
-
     </div>
+    <br>
     <p>{{ $post->body }}</p>
     <hr>
     <small>Written on {{ $post->created_at }}</small>
