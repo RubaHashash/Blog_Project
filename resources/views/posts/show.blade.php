@@ -9,6 +9,13 @@
     <hr>
     <small>Written on {{ $post->created_at }}</small>
     <hr>
+    
     <a href="/posts/{{ $post->id }}/edit" class="btn btn-default">Edit</a>
+
+    <form method = 'POST', action="/posts/{{ $post->id }}", class="pull-right">
+        @csrf
+        @method('DELETE')
+        {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+    </form>
 @endsection
 
