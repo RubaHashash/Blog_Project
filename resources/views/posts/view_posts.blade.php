@@ -10,14 +10,14 @@
                 <div class="row">
                     
                     <div class="col-md-4">
-                        <img style="width: 100%" src="/storage/app/{{ $post->post_photo_path }}" alt="noimage">
+                        <img style="width: 100%" src="/storage/app/{{ $post->post_photo_path }}" >
                     </div>
 
                     <div class="col-md-8">
                         <h3><a href="/posts/{{ $post->id }}">{{ $post->title }}</a></h3>
                         <small>Written on {{ $post->created_at }}</small>        
                     </div>
-                    
+
                 </div>
 
                 @endforeach
