@@ -5,7 +5,7 @@
 
     <h1>Create Post</h1>
 
-    <form method="POST" action="/posts">
+    <form method="POST" action="/posts", enctype = "multipart/form-data">
         @csrf
         <div class="form-group">
             {{ Form::label('title', 'Title') }}
@@ -15,6 +15,10 @@
         <div class="form-group">
             {{ Form::label('body', 'Body') }}
             {{ Form::textarea('body', '', ['class' => 'form-control', 'placeholder' => 'Body', 'required']) }}
+        </div>
+
+        <div class="form-group">
+            {{ Form::file('post_photo_path') }}
         </div>
 
         <div class="form-group">

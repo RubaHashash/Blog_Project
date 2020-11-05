@@ -30,6 +30,7 @@ Route::get('users/{id}',function($id){
 
 
 Route::get('/posts', [PostsController::class,"viewPosts"]);
+Route::get('/Myposts', [PostsController::class,"viewMyPosts"]);
 Route::get('/posts/create', [PostsController::class,"create"]);
 Route::get('/posts/{post}', [PostsController::class,"show"]);
 Route::put('/posts/{post}', [PostsController::class,"update"]);
