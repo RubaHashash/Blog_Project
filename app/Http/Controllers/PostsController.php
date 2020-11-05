@@ -80,6 +80,12 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Posts::find($id);
+        
+        if(Auth::user()->id !== $post->user_id )
+        {
+            return redirect('/posts');
+        }
+        
         return view('posts.edit', compact('post'));
     }
 
@@ -106,6 +112,12 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Posts::find($id);
+
+        if(Auth::user()->id !== $post->user_id )
+        {
+            return redirect('/posts');
+        }
+        
         $post->delete();
 
         return redirect('/posts');
