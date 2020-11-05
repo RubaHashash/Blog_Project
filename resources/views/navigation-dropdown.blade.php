@@ -30,9 +30,13 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('create') }}" :active="request()->routeIs('create')">
+                    {{-- <x-jet-nav-link href="{{ route('create') }}" :active="request()->routeIs('create')">
                         {{ __('Add New Post') }}
-                    </x-jet-nav-link>
+                    </x-jet-nav-link> --}}
+                    <form action="/posts/create" method="POST">
+                        @csrf
+                        <button>submit</button>
+                    </form>
                 </div>
             </div>
 

@@ -39,29 +39,19 @@ class PostsController extends Controller
             'post_photo_path' => 'image|nullable|max:1999'
         ]);
 
-        // //handle the file upload
-        // if($request->hasFile('post_photo_path')){
-        //     // get filename with extensions
-        //     $fileNameWithExt = $request->file('post_photo_path')->getClientOriginalImage();
-        //     //get just the flename
-        //     $fileName = pathinfo($fileNameWithExt, PATHINFO_FILE);
-        //     //get just ext
-        //     $extension = $request->file('post_photo_path')->getOriginalClientExtension();
-        //     //file name to store 
-        //     $fileNameToStore = $fileName . '_'.time() . '.' . $fileNameWithExt;
-        //     //upload image
-        //     $path = $request->file('post_photo_path')->storeAs('storage/public/cover_images', $fileNameToStore);
-        // }else{
-        //     $fileNameToStore = 'noimage.jpeg';
-        // }
-
-
+        //handle the file upload
+        if($request->hasFile('image')){
+            $image = $request->file('image')->getClientOriginalName();
+        }else
+        {
+            $image = "noimage.jpeg";
+        }
 
         $post = new Posts();
         $post->user_id = Auth::user()->id;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
-        // $post->post_photo_path = $fileNameToStore;
+        $post->post_photo_path = $request->file('image')->storeAs('/storage', $image);
         $post->save();
 
         return redirect('/posts');
@@ -95,13 +85,23 @@ class PostsController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'post_photo_path' => 'image|nullable|max:1999'
         ]);
+
+        //handle the file upload
+        if($request->hasFile('image')){
+            $image = $request->file('image')->getClientOriginalName();
+        }
 
         $post = Posts::find($id);
         // $post->user_id = 1;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        if($request->hasFile('image')){
+            $post->post_photo_path = $request->file('image')->storeAs('/storage', $image);
+        }
+
         $post->save();
 
         return redirect('/posts');
@@ -117,7 +117,7 @@ class PostsController extends Controller
         {
             return redirect('/posts');
         }
-        
+
         $post->delete();
 
         return redirect('/posts');

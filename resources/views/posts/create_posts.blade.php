@@ -18,7 +18,7 @@
         </div>
 
         <div class="form-group">
-            {{ Form::file('post_photo_path') }}
+            {{ Form::file('image') }}
         </div>
 
         <div class="form-group">
