@@ -32,7 +32,7 @@ Route::get('users/{id}',function($id){
 Route::get('/posts', [PostsController::class,"viewPosts"]);
 Route::get('/posts/create', [PostsController::class,"create"]);
 Route::get('/posts/{post}', [PostsController::class,"show"]);
-Route::post('/posts/{post}', [PostsController::class,"update"]);
+Route::put('/posts/{post}', [PostsController::class,"update"]);
 Route::get('/posts/{post}/edit', [PostsController::class,"edit"]);
 Route::post('/posts/{post}', [PostsController::class,"destroy"]);
 Route::post('/posts', [PostsController::class,"store"]);
