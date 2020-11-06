@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\CommentsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +13,12 @@ use App\Http\Controllers\CommentsController;
 |
 */
 
-// main page
 Route::get('/', function () {
     return view('auth.login');
 });
+
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -29,7 +30,7 @@ Route::get('users/{id}',function($id){
     return 'this is a user ' . $id;
 });
 
-// posts
+
 Route::group(['middleware' => ['auth']], function() {
     // your routes
     Route::get('/posts', [PostsController::class,"viewPosts"])->name('posts');
@@ -43,10 +44,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 });
 
-// for image linkage
+
 Route::get('/linkstorage', function () { $targetFolder = base_path().'/storage';
     $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage'; symlink($targetFolder, $linkFolder); });
 
 
-// comments
-Route::post('comments/{post_id}', [CommentsController::class, "store"]);
