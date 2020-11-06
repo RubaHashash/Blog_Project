@@ -39,6 +39,12 @@
                     </a>
                 @endif
 
+                @if (Route::has('register'))
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" style = "margin-left: 20px" href="{{ route('register') }}">
+                    {{ __('Register?') }}
+                </a>
+                @endif
+
                 <x-jet-button class="ml-4">
                     {{ __('Login') }}
                 </x-jet-button>

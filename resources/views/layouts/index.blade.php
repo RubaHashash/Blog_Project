@@ -25,7 +25,13 @@
                 <li><a href="/Myposts">My Posts</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li ><a href="/dashboard"><span class="glyphicon glyphicon-log-in"></span> Dashboard</a></li>
+                  <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                this.closest('form').submit();">
+                                <span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                  </form>
               </ul>
             </div>
           </nav>
