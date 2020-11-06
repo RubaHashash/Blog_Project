@@ -20,8 +20,32 @@
                         <h3><a href="/posts/{{ $post->id }}">{{ $post->title }}</a></h3>
                         <small>Written on {{ $post->created_at }}</small>        
                     </div>
+                    
+
+                    {{-- display comments to view --}}
+                    {{-- <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            @foreach ($post->text as $comment)
+                                {{ $comment->text }};
+                            @endforeach
+                        </div>
+                    </div> --}}
+
+                    <div class="col-md-8" style="margin-top: 15px">
+                        <form method="POST" action="/comments/{{ $post->id }}">
+                            @csrf
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ Form::text('text', null, ['class' => 'form-inline', 'placeholder' => 'Add Comment']) }}
+                                    {{ Form::submit('Add Comment', ['class' => 'btn btn-primary btn-sm']) }}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
                 </div>
+
                 <hr>
 
                 @endforeach

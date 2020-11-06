@@ -10,29 +10,28 @@ use Illuminate\Support\Facades\Auth;
 class PostsController extends Controller
 {
      // display all the posts
-     public function viewPosts()
-     {
+     public function viewPosts(){
+         
         $posts = Posts::orderBy('created_at','desc')->get();
         return view('posts.view_posts', compact('posts'));
     }
 
-    public function viewMyPosts()
-    {
+    public function viewMyPosts(){
+
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         return view('posts.user_posts')->with('posts', $user->posts);
     }
 
     // shows the form for creating a new post
-    public function create()
-    {
+    public function create(){
         return view('posts.create_posts');
     }
 
 
     // stores the created post in database
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
         $this->validate($request,[
             'title' => 'required',
             'body' => 'required',
@@ -59,16 +58,16 @@ class PostsController extends Controller
 
 
     // display a specific post
-    public function show($id)
-    {
+    public function show($id){
+
         $post = Posts::find($id);
         return view('posts.show', compact('post'));
     }
 
 
     // shows the form for editing a post
-    public function edit($id)
-    {
+    public function edit($id){
+
         $post = Posts::find($id);
         
         if(Auth::user()->id !== $post->user_id )
@@ -81,8 +80,8 @@ class PostsController extends Controller
 
 
     // updating the post in database
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
+
         $this->validate($request,[
             'title' => 'required',
             'body' => 'required',
@@ -109,8 +108,8 @@ class PostsController extends Controller
 
 
     //remove post
-    public function destroy($id)
-    {
+    public function destroy($id){
+
         $post = Posts::find($id);
 
         if(Auth::user()->id !== $post->user_id )
