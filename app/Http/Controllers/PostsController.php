@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\User;
+use App\Models\Likes;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -46,6 +47,7 @@ class PostsController extends Controller
         {
             $image = "noimage.jpeg";
         }
+        
 
         $post = new Posts();
         $post->user_id = Auth::user()->id;
@@ -121,5 +123,30 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect('/posts');
+    }
+
+
+    public function LikePost(Request $request){
+        
+        $ifexist= Likes::where("user_id", "=", Auth::user()->id)->where("post_id","=",$request->id)->first();
+        if($ifexist==null){
+         $like = new Likes;
+         $like->post_id=$request->id;
+         $like->user_id=Auth::user()->id;
+         $like->save();
+        }
+        else{
+            Likes::where("user_id", "=", Auth::user()->id)->where("post_id","=",$request->id)->delete();
+        }
+    }
+
+    public function count_like(Request $request){
+        $count= Likes::where("post_id","=",$request->id)->count();
+        
+        $post = Posts::find($request->id);
+        $post->likes_count = $count;
+        $post->save();
+        
+        return $count;
     }
 }
