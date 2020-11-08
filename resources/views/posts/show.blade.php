@@ -18,7 +18,22 @@
             <label id="count{{$post->id}}" style="margin-right: 10px">{{ $post->likes_count }}</label>
             <a onclick="likePost({{$post->id}})">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
-            </a>                    
+            </a>    
+            
+            <label style="margin-right: 10px"></label>
+                            <a onclick="myFunction()">
+                                <span class="glyphicon glyphicon-comment"></span>
+                            </a>
+
+                            <div>
+                                <div style="display: none" id ="add_comment" >
+                                    <input type="text" placeholder="Add Comment">
+                                    <a>
+                                        <span class="glyphicon glyphicon-plus-sign"></span>
+                                    </a> 
+                                </div>
+                                
+                            </div>
               
         </div>
 
@@ -39,5 +54,16 @@
             {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
         </form>
     @endif
+
+    <script>
+        function myFunction() {
+          var x = document.getElementById("add_comment");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        }
+        </script>
 @endsection
 
