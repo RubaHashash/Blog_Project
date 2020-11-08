@@ -27,7 +27,8 @@
 
                             <div>
                                 <div style="display: none" id ="add_comment" >
-                                    <input type="text" placeholder="Add Comment">
+                                    <br>
+                                    <input type="text" placeholder="Add Comment" style="border: 0">
                                     <a>
                                         <span class="glyphicon glyphicon-plus-sign"></span>
                                     </a> 
