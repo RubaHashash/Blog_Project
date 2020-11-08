@@ -34,8 +34,8 @@
                             <div>
                                 <div style="display: none" id ="add_comment" >
                                     <br>
-                                    <input type="text" placeholder="Add Comment" style="border: 0">
-                                    <a>
+                                    <input type="text" placeholder="Add Comment" style="border: 0" id ="comment_input{{ $post->id }}">
+                                    <a onclick="commentPost({{$post->id}}, comment_input{{ $post->id }}.value)">
                                         <span class="glyphicon glyphicon-plus-sign"></span>
                                     </a> 
                                 </div>

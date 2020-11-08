@@ -24,6 +24,19 @@ class Service{
         });
         return response.json();
     }
+
+
+    async comment(id,comment_input) {
+        let jsonBody = JSON.stringify({'id': id, 'text': comment_input});
+        await fetch('post/comment', {
+            method: 'POST',
+            body: jsonBody,
+            headers: {
+                'X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Content-Type': 'application/json'
+            }
+        });
+    }
 }
 
 let service = new Service();
@@ -38,6 +51,18 @@ async function likePost(id){
 }
 
 
+async function commentPost(id, comment_input){
+
+    await service.comment(id, comment_input);
+
+    let comment = document.getElementById("comment_input"+id);
+    comment.value = '';
+
+}
+
+
+
+// for comment div
 function myFunction() {
     var x = document.getElementById("add_comment");
     if (x.style.display === "none") {

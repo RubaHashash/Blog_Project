@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\User;
 use App\Models\Likes;
+use App\Models\Comments;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -145,5 +147,18 @@ class PostsController extends Controller
         $post->save();
         
         return $count;
+    }
+
+
+    public function CommentPost(Request $request){
+        
+        $comment = new Comments;
+
+        $comment->post_id=$request->id;
+        $comment->text = $request->text;
+        $comment->user_id=Auth::user()->id;
+        
+        $comment->save();
+        
     }
 }
