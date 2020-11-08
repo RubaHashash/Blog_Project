@@ -47,7 +47,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/post/count_like', [PostsController::class,"count_like"]);
 
     //comments
-    Route::post('post/comment', [PostsController::class,"CommentPost"]);
+    Route::post('/post/comment', [PostsController::class,"CommentPost"]);
+    Route::post('/post/display_comments',[PostsController::class,"displayComment"]);
 
 });
 

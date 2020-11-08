@@ -21,20 +21,22 @@
             </a>    
             
             <label style="margin-right: 10px"></label>
-                            <a onclick="myFunction()">
-                                <span class="glyphicon glyphicon-comment"></span>
-                            </a>
+            <a onclick="myFunction({{ $post->id }})">
+                <span class="glyphicon glyphicon-comment"></span>
+            </a>
 
-                            <div>
-                                <div style="display: none" id ="add_comment" >
-                                    <br>
-                                    <input type="text" placeholder="Add Comment" style="border: 0">
-                                    <a>
-                                        <span class="glyphicon glyphicon-plus-sign"></span>
-                                    </a> 
-                                </div>
-                                
-                            </div>
+            <div style="display: none" id ="add_comment{{ $post->id }}" >
+                <div id="comment_div{{ $post->id }}"></div>
+                
+                <div>
+                    <br>
+                    <input type="text" placeholder="Add Comment" style="border: 0" id ="comment_input{{ $post->id }}">
+                    <a onclick="commentPost({{$post->id}})">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                    </a> 
+                </div>
+                
+            </div>
               
         </div>
 

@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class PostsController extends Controller
 {
      // display all the posts
-     public function viewPosts()
-     {
+     public function viewPosts(){
         $posts = Posts::orderBy('created_at','desc')->get();
         return view('posts.view_posts', compact('posts'));
     }
@@ -60,16 +59,15 @@ class PostsController extends Controller
 
 
     // display a specific post
-    public function show($id)
-    {
+    public function show($id){
         $post = Posts::find($id);
         return view('posts.show', compact('post'));
     }
 
 
     // shows the form for editing a post
-    public function edit($id)
-    {
+    public function edit($id){
+
         $post = Posts::find($id);
         
         if(Auth::user()->id !== $post->user_id )
@@ -82,8 +80,8 @@ class PostsController extends Controller
 
 
     // updating the post in database
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
+
         $this->validate($request,[
             'title' => 'required',
             'body' => 'required',
@@ -96,7 +94,6 @@ class PostsController extends Controller
         }
 
         $post = Posts::find($id);
-        // $post->user_id = 1;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         if($request->hasFile('image')){
@@ -110,8 +107,8 @@ class PostsController extends Controller
 
 
     //remove post
-    public function destroy($id)
-    {
+    public function destroy($id){
+
         $post = Posts::find($id);
 
         if(Auth::user()->id !== $post->user_id )
@@ -128,6 +125,7 @@ class PostsController extends Controller
     public function LikePost(Request $request){
         
         $ifexist= Likes::where("user_id", "=", Auth::user()->id)->where("post_id","=",$request->id)->first();
+        
         if($ifexist==null){
          $like = new Likes;
          $like->post_id=$request->id;
@@ -161,4 +159,17 @@ class PostsController extends Controller
         $comment->save();
         
     }
+
+
+    public function displayComment(Request $request){
+        
+        $result= Comments::orderBy('created_at','asc')->where("post_id","=",$request->id)
+        ->join('users','users.id',"=", "comments.user_id")
+        ->select("comments.*","users.name")->get();
+        
+        return $result;
+    }
+
+
+    
 }
