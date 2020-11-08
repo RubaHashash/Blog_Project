@@ -42,7 +42,7 @@
             @yield('content')
         </div>
 
-        <script src="js/postsJS.js"></script>
+        <script src="{{ asset('js/postsJS.js') }}"></script>
 
     </body>
     

@@ -17,23 +17,20 @@ class PostsController extends Controller
         return view('posts.view_posts', compact('posts'));
     }
 
-    public function viewMyPosts()
-    {
+    public function viewMyPosts() {
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         return view('posts.user_posts')->with('posts', $user->posts);
     }
 
     // shows the form for creating a new post
-    public function create()
-    {
+    public function create(){
         return view('posts.create_posts');
     }
 
 
     // stores the created post in database
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $this->validate($request,[
             'title' => 'required',
             'body' => 'required',

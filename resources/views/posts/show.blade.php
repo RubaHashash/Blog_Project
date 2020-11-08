@@ -6,12 +6,25 @@
     <hr>
     
     <div class="row">
-        <div class="col-md-12">
-            <img style="width: 30%" src="/storage/app/{{ $post->post_photo_path }}" alt="noimage">
+        <div class="col-md-4">
+            <img style="width: 80%" src="/storage/app/{{ $post->post_photo_path }}" alt="noimage">
         </div>
+
+        <div class="col-md-4">
+            <p>{{ $post->body }}</p>
+        </div>
+
+        <div class="col-md-4">
+            <label id="count{{$post->id}}" style="margin-right: 10px">{{ $post->likes_count }}</label>
+            <a onclick="likePost({{$post->id}})">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+            </a>                    
+              
+        </div>
+
     </div>
     <br>
-    <p>{{ $post->body }}</p>
+    
     <hr>
     <small>Written on {{ $post->created_at }}</small>
     <hr>
