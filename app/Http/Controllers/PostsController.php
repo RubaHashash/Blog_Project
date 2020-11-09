@@ -14,8 +14,6 @@ class PostsController extends Controller
 {
      // display all the posts
      public function viewPosts(){
-        // $posts = Posts::orderBy('created_at','desc')->get();
-        // return view('posts.view_posts', compact('posts'));
 
         $posts= Posts::orderBy('created_at','desc')
         ->join('users','users.id',"=", "posts.user_id")
