@@ -123,7 +123,7 @@ async function displayCommentFunction(id){
         name_user.innerText=element.name;
     
         let comment_created = document.createElement('span');
-        comment_created.innerText = element.created_at;
+        comment_created.innerText = new Date(element.created_at).toLocaleString('en-GB', { timeZone: 'UTC' });
         comment_created.style.float = 'right';
     
         let comment_label = document.createElement('span');

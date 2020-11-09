@@ -14,8 +14,15 @@ class PostsController extends Controller
 {
      // display all the posts
      public function viewPosts(){
-        $posts = Posts::orderBy('created_at','desc')->get();
+        // $posts = Posts::orderBy('created_at','desc')->get();
+        // return view('posts.view_posts', compact('posts'));
+
+        $posts= Posts::orderBy('created_at','desc')
+        ->join('users','users.id',"=", "posts.user_id")
+        ->select("posts.*","users.name")->get();
+
         return view('posts.view_posts', compact('posts'));
+
     }
 
     public function viewMyPosts() {
@@ -23,6 +30,7 @@ class PostsController extends Controller
         $user = User::find($user_id);
         return view('posts.user_posts')->with('posts', $user->posts);
     }
+    
 
     // shows the form for creating a new post
     public function create(){

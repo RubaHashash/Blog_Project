@@ -13,14 +13,18 @@
                 <div class="row">
                     
                     <div class="col-md-4">
+                        <div style="margin-bottom: 10px">
+                            <span class="glyphicon glyphicon-user" style="margin-right: 5px"></span>
+                            <label>{{ $post->name }}</label>
+                        </div>
                         <img style="width: 50%" src="/storage/app/{{ $post->post_photo_path }}" >
                     </div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-8" style="margin-top: 12px">
                         <h3><a href="/posts/{{ $post->id }}">{{ $post->title }}</a></h3>
                         
                         
-                        <div style="margin-bottom: 85px">
+                        <div style="margin-bottom: 95px">
                             <label id="count{{$post->id}}" style="margin-right: 10px">{{ $post->likes_count }}</label>
                             <a onclick="likePost({{$post->id}})">
                                 <span class="glyphicon glyphicon-thumbs-up"></span>
