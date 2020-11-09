@@ -18,17 +18,9 @@ Route::get('/', function () {
 });
 
 
-
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-
-
-Route::get('users/{id}',function($id){
-    return 'this is a user ' . $id;
-});
 
 
 Route::group(['middleware' => ['auth']], function() {

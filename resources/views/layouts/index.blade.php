@@ -21,10 +21,12 @@
               <div class="navbar-header">
                 <a class="navbar-brand" href="/posts">Blog</a>
               </div>
+
               <ul class="nav navbar-nav">
                 <li><a href="/posts">Home</a></li>
                 <li><a href="/Myposts">My Posts</a></li>
               </ul>
+
               <ul class="nav navbar-nav navbar-right">
                   <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -35,7 +37,7 @@
                   </form>
               </ul>
             </div>
-          </nav>
+        </nav>
 
 
         <div class="container">

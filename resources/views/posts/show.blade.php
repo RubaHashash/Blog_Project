@@ -26,6 +26,7 @@
             </a>
 
             <div style="display: none" id ="add_comment{{ $post->id }}" >
+                
                 <div id="comment_div{{ $post->id }}"></div>
                 
                 <div>

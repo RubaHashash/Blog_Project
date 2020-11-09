@@ -23,6 +23,7 @@ class PostsController extends Controller
 
     }
 
+    // display posts for a specific user
     public function viewMyPosts() {
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
@@ -127,22 +128,23 @@ class PostsController extends Controller
         return redirect('/posts');
     }
 
-
+    // add or remove like from database
     public function LikePost(Request $request){
         
         $ifexist= Likes::where("user_id", "=", Auth::user()->id)->where("post_id","=",$request->id)->first();
         
         if($ifexist==null){
-         $like = new Likes;
-         $like->post_id=$request->id;
-         $like->user_id=Auth::user()->id;
-         $like->save();
+            $like = new Likes;
+            $like->post_id=$request->id;
+            $like->user_id=Auth::user()->id;
+            $like->save();
         }
         else{
             Likes::where("user_id", "=", Auth::user()->id)->where("post_id","=",$request->id)->delete();
         }
     }
 
+    // get the count of likes
     public function count_like(Request $request){
         $count= Likes::where("post_id","=",$request->id)->count();
         
@@ -153,7 +155,7 @@ class PostsController extends Controller
         return $count;
     }
 
-
+    // add comments to database
     public function CommentPost(Request $request){
         
         $comment = new Comments;
@@ -166,7 +168,7 @@ class PostsController extends Controller
         
     }
 
-
+    // get comments on a specific post
     public function displayComment(Request $request){
         
         $result= Comments::orderBy('created_at','asc')->where("post_id","=",$request->id)

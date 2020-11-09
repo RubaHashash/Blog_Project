@@ -13,10 +13,13 @@
                 <th></th>
                 <th></th>
             </tr>
+
             @foreach ($posts as $post)
                 <tr>
                     <th><img style="width: 25%; margin-right:15px" src="/storage/app/{{ $post->post_photo_path }}" alt="noimage"> {{ $post->title }}</th>
+                    
                     <th><a href="/posts/{{ $post->id }}/edit" class="btn btn-default">Edit</a></th>
+                    
                     <th>
                         <form method = 'POST', action="/posts/{{ $post->id }}">
                             @csrf
@@ -24,6 +27,7 @@
                             {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                         </form>
                     </th>
+                    
                     <th></th>
                 </tr>
             @endforeach

@@ -55,6 +55,7 @@ class Service{
 
 let service = new Service();
 
+// add likes and display likes count
 async function likePost(id){
     
     await service.like(id);
@@ -64,7 +65,7 @@ async function likePost(id){
     div.innerText=res;
 }
 
-
+// add and display comments
 async function commentPost(id){
 
     let comment = document.getElementById("comment_input"+id);
@@ -105,42 +106,39 @@ async function commentPost(id){
     div.appendChild(inner_div);
 }
 
-
+// display comments
 async function displayCommentFunction(id){
         
     //display comments
-        let result= await service.display_comments(id);
+    let result= await service.display_comments(id);
 
-        let div = document.getElementById("comment_div"+id);
-        let inner_div = document.createElement('div');
-        div.innerHTML='';
-        result.forEach((element) => {
-    
-        let hr = document.createElement('hr');
-        let myDiv = document.createElement('div');
-    
-        let name_user = document.createElement('label');
-        name_user.innerText=element.name;
-    
-        let comment_created = document.createElement('span');
-        comment_created.innerText = new Date(element.created_at).toLocaleString('en-GB', { timeZone: 'UTC' });
-        comment_created.style.float = 'right';
-    
-        let comment_label = document.createElement('span');
-        comment_label.innerText=element.text
-            
-        inner_div.appendChild(hr);
-        myDiv.appendChild(name_user);
-        myDiv.appendChild(comment_created);
-        inner_div.appendChild(myDiv);
-        inner_div.appendChild(comment_label);
-    
-        });
-        div.appendChild(inner_div);
+    let div = document.getElementById("comment_div"+id);
+    let inner_div = document.createElement('div');
+    div.innerHTML='';
+    result.forEach((element) => {
+
+    let hr = document.createElement('hr');
+    let myDiv = document.createElement('div');
+
+    let name_user = document.createElement('label');
+    name_user.innerText=element.name;
+
+    let comment_created = document.createElement('span');
+    comment_created.innerText = new Date(element.created_at).toLocaleString('en-GB', { timeZone: 'UTC' });
+    comment_created.style.float = 'right';
+
+    let comment_label = document.createElement('span');
+    comment_label.innerText=element.text
+        
+    inner_div.appendChild(hr);
+    myDiv.appendChild(name_user);
+    myDiv.appendChild(comment_created);
+    inner_div.appendChild(myDiv);
+    inner_div.appendChild(comment_label);
+
+    });
+    div.appendChild(inner_div);
 }
-
-
-
 
 // for comment div
 function myFunction(id) {
